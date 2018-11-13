@@ -126,33 +126,26 @@ return [
                     'icon'    => 'share',
                     'submenu' => [
                         [
-                            'text'    => 'Intro',
-                            'url'     => '/homeintro',
+                            'text' => 'Intro',
+                            'url'  => '/homeintro',
                         ],
                         [
                             'text' => 'About',
-                            'url'  => '#',
+                            'url'  => '/homeabout',
                         ],
                         [
-                            'text' => 'Testimonils',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text' => 'Services',
-                            'url'  => '#',
+                            'text' => 'Testimonials',
+                            'url'  => '/hometestimo',
                         ],
                         [
                             'text' => 'Team',
-                            'url'  => '#',
+                            'url'  => '/hometeam',
                         ],
                         [
                             'text' => 'Promotion',
-                            'url'  => '#',
+                            'url'  => '/homepromo',
                         ],
-                        [
-                            'text' => 'Contact',
-                            'url'  => '#',
-                        ],
+
                     ],
                 ],
                 [
@@ -233,7 +226,7 @@ return [
                         ],
                         [
                             'text' => 'Contact',
-                            'url'  => '#',
+                            'url'  => '/contact/coordonnee',
                         ],
                     ],
                 ],

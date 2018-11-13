@@ -30,9 +30,9 @@
     @include('./partials/home/about')
     @include('./partials/home/testimonials')
     @include('./partials/home/services')
-    @include('./partials/home/team')
+	@include('./partials/home/team')
     @include('./partials/home/promotion')
-    @include('./partials/home/contact')
+    @include('./partials/contact/contact')
     @include('./partials/home/footer')
         
     <!--====== Javascripts & Jquery ======-->

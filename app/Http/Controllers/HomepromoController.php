@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Homepromo;
-use App\Homeintro;
-use App\Homeabout;
-use App\Coordonnee;
-
-use Storage;
-
-class HomepageController extends Controller
+use App\Http\Requests\HomepromoValidation;
+class HomepromoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +14,8 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        $intro=Homeintro::all();
-        $about=Homeabout::all();
-        $promo=Homepromo::all();
-        $coord=Coordonnee::all();
-        return view (('welcome'), compact('intro', 'about', 'promo', 'coord'));
-
-
+        $promo= Homepromo::all();
+        return view (('admin/homepromo'), compact('promo'));
     }
 
     /**
@@ -33,31 +23,13 @@ class HomepageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(HomepromoValidation  $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $promo= new Homepromo;
+        $promo->titre= $request->titre;
+        $promo->description= $request->description;
+        $promo->save();
+        return redirect('homepromo');
     }
 
     /**
@@ -68,7 +40,8 @@ class HomepageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modif=Homepromo::find($id);
+        return view ('admin/edithomepromo', compact('modif'));
     }
 
     /**
@@ -78,9 +51,13 @@ class HomepageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(HomepromoValidation  $request, $id)
     {
-        //
+        $modif=Homepromo::find($id);
+        $modif->titre= $request->titre;
+        $modif->description= $request->description;
+        $modif->save();
+        return redirect('homepromo');
     }
 
     /**
@@ -91,6 +68,8 @@ class HomepageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del=Homepromo::find($id);
+        $del->delete();
+        return redirect ('homepromo');
     }
 }

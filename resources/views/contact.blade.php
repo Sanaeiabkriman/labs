@@ -23,7 +23,7 @@
 <body>
 @include('partials/contact/header')
 @include('partials/contact/map')
-@include('partials/home/contact')
+@include('partials/contact/contact')
 @include('partials/home/footer')
 
 

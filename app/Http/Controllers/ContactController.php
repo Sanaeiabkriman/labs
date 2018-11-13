@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Homepromo;
-use App\Homeintro;
-use App\Homeabout;
-use App\Coordonnee;
-
-use Storage;
-
-class HomepageController extends Controller
+use App\Contact;
+use App\Mail\MessageContact;
+use Illuminate\Support\Facades\Mail;
+use Validator;
+use Session;
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +17,7 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        $intro=Homeintro::all();
-        $about=Homeabout::all();
-        $promo=Homepromo::all();
-        $coord=Coordonnee::all();
-        return view (('welcome'), compact('intro', 'about', 'promo', 'coord'));
-
-
+        //
     }
 
     /**
@@ -33,9 +25,30 @@ class HomepageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nom' => 'required|max:50',
+            'email'=>'required|email|max:60',
+            'sujet'=>'required|max:50',
+            'msg'=>'required',
+            ]);
+            
+        if ($validator->fails()) {
+            return redirect('/#contacts')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        
+        $contact= New Contact;
+        $contact->nom =$request->nom;
+        $contact->email =$request->email;
+        $contact->msg =$request->msg;
+        $contact->sujet =$request->sujet;
+        $contact->save();
+        $mailable = new MessageContact($contact);
+        Mail::to('iabkriman.sanae@gmail.com')->send($mailable);
+        return redirect('/#contacts')->with('success','Votre message a bien été envoyé!');
     }
 
     /**
