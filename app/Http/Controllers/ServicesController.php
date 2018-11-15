@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Contact;
-use App\Mail\MessageContact;
-use Illuminate\Support\Facades\Mail;
-// use App\Coordonnee;
-use Validator;
-use Session;
-class ContactController extends Controller
+use App\Coordonnee;
+use App\Service;
+
+class ServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +15,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-      //
+        $coord=Coordonnee::all();
+        $serv=Service::all();
+        return view('admin/services', compact('serv','coord'));
+
     }
 
     /**
@@ -26,30 +26,9 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $validator = Validator::make($request->all(), [
-            'nom' => 'required|max:50',
-            'email'=>'required|email|max:60',
-            'sujet'=>'required|max:50',
-            'msg'=>'required',
-            ]);
-            
-        if ($validator->fails()) {
-            return redirect('/#contacts')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-        
-        $contact= New Contact;
-        $contact->nom =$request->nom;
-        $contact->email =$request->email;
-        $contact->msg =$request->msg;
-        $contact->sujet =$request->sujet;
-        $contact->save();
-        $mailable = new MessageContact($contact);
-        Mail::to('iabkriman.sanae@gmail.com')->send($mailable);
-        return redirect('/#contacts')->with('success','Votre message a bien été envoyé!');
+        //
     }
 
     /**

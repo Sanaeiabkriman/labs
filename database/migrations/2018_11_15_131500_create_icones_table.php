@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestimosTable extends Migration
+class CreateIconesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateTestimosTable extends Migration
      */
     public function up()
     {
-        Schema::create('testimos', function (Blueprint $table) {
+        Schema::create('icones', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('titre');
-            $table->text('text');
-            $table->unsignedInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->text('icone');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -31,6 +27,6 @@ class CreateTestimosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('testimos');
+        Schema::dropIfExists('icones');
     }
 }

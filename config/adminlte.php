@@ -135,7 +135,19 @@ return [
                         ],
                         [
                             'text' => 'Testimonials',
-                            'url'  => '/hometestimo',
+                            'url'  => '/hometestimonials',
+                        ],
+                        [
+                            'text' => 'Clients',
+                            'url'  => '/homeclients',
+                        ],
+                        [
+                            'text' => 'Roles',
+                            'url'  => '/role',
+                        ],
+                        [
+                            'text' => 'Users',
+                            'url'  => '/user',
                         ],
                         [
                             'text' => 'Team',

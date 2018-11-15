@@ -30,7 +30,7 @@
 	@include('partials/service/tel')
 	@include('partials/service/servimage')
 	@include('partials/service/newsletter')
-	@include('partials/home/contact')
+	@include('partials/contact/contact')
 	@include('partials/home/footer')
 
 	<!--====== Javascripts & Jquery ======-->
