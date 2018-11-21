@@ -150,10 +150,6 @@ return [
                             'url'  => '/user',
                         ],
                         [
-                            'text' => 'Team',
-                            'url'  => '/hometeam',
-                        ],
-                        [
                             'text' => 'Promotion',
                             'url'  => '/homepromo',
                         ],
@@ -165,39 +161,28 @@ return [
                     'icon'    => 'share',
                     'submenu' => [
                         [
-                            'text'    => 'Header',
-                            'url'     => '#',
+                            'text'    => 'Icones',
+                            'url'     => '/services/icones',
                         ],
                         [
                             'text' => 'Services',
-                            'url'  => '#',
+                            'url'  => '/servicesadmin',
                         ],
                         [
-                            'text' => 'Tel',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text' => 'Derniers projets',
-                            'url'  => '#',
+                            'text' => 'Projets',
+                            'url'  => '/projets',
                         ],
                         [
                             'text' => 'Newsletter',
                             'url'  => '#',
                         ],
-                        [
-                            'text' => 'Contact',
-                            'url'  => '#',
-                        ],
+
                     ],
                 ],
                 [
                     'text'    => 'Page Blog',
                     'icon'    => 'share',
                     'submenu' => [
-                        [
-                            'text'    => 'Header',
-                            'url'     => '#',
-                        ],
                         [
                             'text' => 'Articles',
                             'url'  => '#',
@@ -212,11 +197,11 @@ return [
                         ],
                         [
                             'text' => 'Tags',
-                            'url'  => '#',
+                            'url'  => '/blog/tags',
                         ],
                         [
-                            'text' => 'Quote',
-                            'url'  => '#',
+                            'text' => 'Etats',
+                            'url'  => '/blog/etats',
                         ],
                         [
                             'text' => 'Newsletter',

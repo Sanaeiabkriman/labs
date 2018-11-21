@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Service;
 use App\Icone;
-use App\Http\Requests\ServiceValidation;
+use App\Http\Requests\iconesValidation;
 
-class ServicesController extends Controller
+class IconeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $serv=Service::paginate(6);
         $icone=Icone::all();
-        return view('admin/services/serv', compact('serv','icone'));
+        return view (('admin/services/icones'), compact('icone'));
+
     }
 
     /**
@@ -26,15 +25,15 @@ class ServicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ServiceValidation $request)
+    public function create(iconesValidation $request)
     {
-        $serv=new Service;
-        $serv->titre=$request->titre;
-        $serv->texte=$request->texte;
-        $serv->icone_id=$request->icone;
-        $serv->save();
-        return redirect('servicesadmin');
+        $icone=new Icone;
+        $icone->icone=$request->icone;
+        $icone->nom=$request->nom;
+        $icone->save();
+        return redirect('/services/icones');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -44,9 +43,8 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        $modif=Service::find($id);
-        $icone=Icone::all();
-        return view ('admin/services/editserv', compact('modif','icone'));
+        $modif=Icone::find($id);
+        return view ('admin/services/editicone', compact('modif'));
     }
 
     /**
@@ -56,14 +54,13 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ServiceValidation $request, $id)
+    public function update(iconesValidation $request, $id)
     {
-        $modif=Service::find($id);
-        $modif->titre=$request->titre;
-        $modif->texte=$request->texte;
-        $modif->icone_id=$request->icone;
+        $modif=Icone::find($id);
+        $modif->icone=$request->icone;
+        $modif->nom=$request->nom;
         $modif->save();
-        return redirect('servicesadmin');
+        return redirect('/services/icones');
     }
 
     /**
@@ -74,8 +71,8 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        $del=Service::find($id);
+        $del=Icone::find($id);
         $del->delete();
-        return redirect ('servicesadmin');
+        return redirect ('/services/icones');
     }
 }

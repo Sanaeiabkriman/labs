@@ -36,7 +36,7 @@ Route::post('/homepromo/delete/{id}', 'HomepromoController@destroy');
 Route::post('/homepromo/update/{id}', 'HomepromoController@update');
 // Page home-client
 Route::get('/homeclients', 'ClientController@index');
-
+// Page Home
 Route::get('/homeclient','ClientController@index');
 Route::post('/homeclient/create', 'ClientController@create');
 Route::get('/homeclient/edit/{id}', 'ClientController@edit');
@@ -60,18 +60,41 @@ Route::post('/user/create', 'UsersController@create');
 Route::get('/user/edit/{id}', 'UsersController@edit');
 Route::post('/user/delete/{id}', 'UsersController@destroy');
 Route::post('/user/update/{id}', 'UsersController@update');
-// Page services
+// Page client-Service 
 Route::get('/services','ServicesPageController@index');
-
-// Route::get('/services','ServicesController@index');
-// Route::post('/services/create', 'ServicesController@create');
-// Route::get('/services/edit/{id}', 'ServicesController@edit');
-// Route::post('/services/delete/{id}', 'ServicesController@destroy');
-// Route::post('/services/update/{id}', 'ServicesController@update');
-
-// Page Contact
+// Page services
+Route::get('/servicesadmin','ServicesController@index');
+Route::post('/services/create', 'ServicesController@create');
+Route::get('/services/serv/edit/{id}', 'ServicesController@edit');
+Route::post('/services/serv/delete/{id}', 'ServicesController@destroy');
+Route::post('/services/update/{id}', 'ServicesController@update');
+// Page Icones
+Route::get('/services/icones', 'IconeController@index');
+Route::post('/services/icones/create', 'IconeController@create');
+Route::get('/services/icones/edit/{id}', 'IconeController@edit');
+Route::post('/services/icones/delete/{id}', 'IconeController@destroy');
+Route::post('/services/icones/update/{id}', 'IconeController@update');
+// Page projets
+Route::get('/projets','ProjetController@index');
+Route::post('/projets/create', 'ProjetController@create');
+Route::get('/projets/edit/{id}', 'ProjetController@edit');
+Route::post('/projets/delete/{id}', 'ProjetController@destroy');
+Route::post('/projets/update/{id}', 'ProjetController@update');
+// Page etats
+Route::get('/blog/etats','EtatsController@index');
+Route::post('/blog/etats/create', 'EtatsController@create');
+Route::get('/blog/etats/edit/{id}', 'EtatsController@edit');
+Route::post('/blog/etats/delete/{id}', 'EtatsController@destroy');
+Route::post('/blog/etats/update/{id}', 'EtatsController@update');
+// Page tags
+Route::get('/blog/tags','TagsController@index');
+Route::post('/blog/tags/create', 'TagsController@create');
+Route::get('/blog/tags/edit/{id}', 'TagsController@edit');
+Route::post('/blog/tags/delete/{id}', 'TagsController@destroy');
+Route::post('/blog/tags/update/{id}', 'TagsController@update');
+// Mailable
 Route::get('/contact', 'CoordController@index');
-
+// Page Contact
 Route::post('/contactmail', 'ContactController@create');
 Route::get('/contact/coordonnee', 'CoordonneeController@index');
 Route::post('/contact/coordonnee/create', 'CoordonneeController@create');

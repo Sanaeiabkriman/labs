@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Coordonnee;
 use App\Service;
+use App\Projet;
+use App\Icone;
 
 class ServicesPageController extends Controller
 {
@@ -16,8 +18,11 @@ class ServicesPageController extends Controller
     public function index()
     {
         $coord=Coordonnee::all();
-        $serv=Service::all();
-        return view('services', compact('serv','coord'));
+        $serv=Service::paginate(9);
+        $projet1=(Projet::orderBy('id', 'desc')->take(6)->get())->reverse();
+        $projet=Projet::orderBy('id', 'desc')->take(3)->get();
+        $icone=Icone::all();
+        return view('services', compact('serv','coord', 'projet1','icone', 'projet'));
     }
 
     /**

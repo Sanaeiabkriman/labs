@@ -33,9 +33,13 @@
             <input type="text" name="password" value="{{old('password')}}" class="form-control">
         </div>
         <div class="form-group">
-                <label>Fonction</label>
-                <input type="text" name="fonction" value="{{old('fonction')}}" class="form-control">
-            </div>
+            <label>Fonction</label>
+            <input type="text" name="fonction" value="{{old('fonction')}}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Choisissez une bio</label>
+            <textarea class="form-control" type="file" name="bio" rows="3">{{old('bio')}}</textarea>
+        </div>
         <div class="form-group">
                 <label>Choisissez le role</label>
                 <select name="role" value="{{old('role')}}">
@@ -43,7 +47,7 @@
                     <option value="{{$item->id}}">{{$item->role}}{{old($item->id)}}</option>
                     @endforeach
             </select>
-            </div>
+        </div>
         
         <div class="form-group">
             <label>Photo</label>

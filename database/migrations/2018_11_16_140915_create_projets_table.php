@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIconesTable extends Migration
+class CreateProjetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateIconesTable extends Migration
      */
     public function up()
     {
-        Schema::create('icones', function (Blueprint $table) {
+        Schema::create('projets', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('icone');
-            $table->text('nom');
+            $table->string('titre');
+            $table->text('texte');
+            $table->unsignedInteger('icone_id');
+            $table->foreign('icone_id')->references('id')->on('icones');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateIconesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('icones');
+        Schema::dropIfExists('projets');
     }
 }

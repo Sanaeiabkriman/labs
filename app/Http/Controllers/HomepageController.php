@@ -7,6 +7,8 @@ use App\Homepromo;
 use App\Homeintro;
 use App\Homeabout;
 use App\Coordonnee;
+use App\Service;
+use App\Icone;
 use App\User;
 use Storage;
 
@@ -25,7 +27,9 @@ class HomepageController extends Controller
         $coord=Coordonnee::all();
         $users=User::inRandomOrder()->take(2)->get();
         $center=User::first();
-        return view (('welcome'), compact('intro', 'about', 'promo', 'coord', 'users', 'center'));
+        $icone=Icone::all();
+        $serv=Service::paginate(9);
+        return view (('welcome'), compact('intro', 'about', 'promo', 'coord', 'users', 'center','icone','serv'));
 
 
     }

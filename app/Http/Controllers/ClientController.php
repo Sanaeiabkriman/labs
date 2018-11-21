@@ -34,7 +34,7 @@ class ClientController extends Controller
         $resized->save();
         Storage::put('/public/images/thumbnails/'.$renom, $resized);
 
-        $client= new Client;
+        $client=new Client;
         $client->nom= $request->nom;
         $client->fonction= $request->fonction;
         $client->photo= $renom;

@@ -43,6 +43,7 @@ class UsersController extends Controller
         $users->password= $request->password;
         $users->role_id=$request->role;
         $users->photo= $renom;
+        $users->bio= $request->bio;
         $users->fonction= $request->fonction;
         $users->save();
         return redirect('user');
@@ -87,6 +88,7 @@ class UsersController extends Controller
         $modif->email=$request->email;
         $modif->password=bcrypt($request->password);
         $modif->role_id=$request->role;
+        $modif->bio= $request->bio;
         $modif->fonction= $request->fonction;
         $modif->save();
         return redirect('user');

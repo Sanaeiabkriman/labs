@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIconesTable extends Migration
+class AddImageToProjetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateIconesTable extends Migration
      */
     public function up()
     {
-        Schema::create('icones', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('icone');
-            $table->text('nom');
-            $table->timestamps();
+        Schema::table('projets', function (Blueprint $table) {
+            $table->text('image')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateIconesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('icones');
+        Schema::table('projets', function (Blueprint $table) {
+            //
+        });
     }
 }

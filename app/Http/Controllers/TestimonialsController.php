@@ -15,8 +15,8 @@ class TestimonialsController extends Controller
      */
     public function index()
     {
-        $testimo= Testimonial::all();
-        $client= Client::all();
+        $testimo=Testimonial::all();
+        $client=Client::all();
         return view (('admin/hometestimo'), compact('testimo', 'client'));
 
     }
@@ -28,7 +28,7 @@ class TestimonialsController extends Controller
      */
     public function create(TestimoValidation $request)
     {
-        $testimo= new Testimonial;
+        $testimo=new Testimonial;
         $testimo->text= $request->text;
         $testimo->client_id=$request->client;
         $testimo->save();

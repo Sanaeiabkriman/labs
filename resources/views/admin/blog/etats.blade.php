@@ -13,16 +13,17 @@
     </ul>
 </div>
 @endif
+
 <h4 style="background-color:#3c8dbc; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-    Création d'un nouveau role
+    Création d'un nouvel etat
 </h4>
 
-<form action="/role/create" method="post" enctype="multipart/form-data" role="form">
+<form action="/blog/etats/create" method="post" enctype="multipart/form-data" role="form">
     @csrf
     <div class="box">
         <div class="form-group">
-            <label>Nouveau role</label>
-            <input type="text" name="role" value="{{old('role')}}" class="form-control">
+            <label>Nouvel etat</label>
+            <input type="text" name="nom" value="{{old('nom')}}" class="form-control">
         </div>
     
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
@@ -35,21 +36,21 @@
     <div class="box-body">
         {{-- Titre de page --}}
         <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-            Roles
+            Etats
         </h4>
         {{-- box de modif --}}
         <div class="media">
             <div class="media-body">
                 <div class="clearfix">
 
-                    @foreach ($roles as $item)
+                    @foreach ($etats as $item)
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="info-box">
-                            <p>{{$item->role}}</p>
+                            <p>{{$item->nom}}</p>
                      
                             <!-- /.info-box-content -->
-                            <a href="/role/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
-                            <form action="/role/delete/{{$item->id}}" method="POST" style="padding: 7px 10px; margin-top: 0;">
+                            <a href="/blog/etats/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
+                            <form action="/blog/etats/delete/{{$item->id}}" method="POST" style="padding: 7px 10px; margin-top: 0;">
                                 @csrf
                                 <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
                             </form>
