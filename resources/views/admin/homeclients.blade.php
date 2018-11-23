@@ -17,6 +17,7 @@
     Création d'un client
 </h4>
 
+
 <form action="/homeclient/create" method="post" enctype="multipart/form-data" role="form">
     @csrf
     <div class="box">

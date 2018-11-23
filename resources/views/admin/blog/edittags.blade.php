@@ -22,7 +22,14 @@
             <label>Choisissez un tag</label>
             <input type="text" name="tag" value="{{old('tag', $modif->tag)}}" class="form-control">
         </div>
-
+        <div class="form-group">
+            <label>Choisissez la categorie</label>
+            <select name="etat" value="{{old('etat')}}">
+                @foreach ($etat as $item)
+                <option value="{{$item->id}}">{{$item->nom}}{{old($item->id)}}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-default btn-block btn-sm">Modifier</button>
     </div>
 </form>

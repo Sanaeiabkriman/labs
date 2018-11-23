@@ -185,11 +185,11 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Articles',
-                            'url'  => '#',
+                            'url'  => '/blog/article',
                         ],
                         [
                             'text' => 'Catégories',
-                            'url'  => '#',
+                            'url'  => '/blog/cat',
                         ],
                         [
                             'text' => 'Instagram',

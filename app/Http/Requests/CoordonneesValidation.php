@@ -25,7 +25,7 @@ class CoordonneesValidation extends FormRequest
     {
         return [
             'titre1' => 'required|max:50',
-            'texte'=> 'required|max:1000|min:100',
+            'texte'=> 'required|max:1000',
             'titre2'=> 'required|max:50',
             'adresse'=> 'required',
             'num'=> 'required',

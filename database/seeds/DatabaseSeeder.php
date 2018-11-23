@@ -18,10 +18,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientsSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(ServicesSeeder::class);
         $this->call(IconesSeeder::class);
+        $this->call(ServicesSeeder::class);
         $this->call(EtatSeeder::class);
         $this->call(TagSeeder::class);
+        $this->call(ProjetSeeder::class);
+        $this->call(CatSeeder::class);
+
 
     }
 }

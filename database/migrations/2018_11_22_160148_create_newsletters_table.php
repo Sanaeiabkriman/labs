@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateNewslettersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('newsletters', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('categorie');
-            $table->unsignedInteger('etat_id');
-            $table->foreign('etat_id')->references('id')->on('etats');
+            $table->text('mail');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('newsletters');
     }
 }

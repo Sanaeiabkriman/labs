@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tag;
+use App\Categorie;
 use App\Etat;
-use App\Http\Requests\TagValidation;
-class TagsController extends Controller
+use App\Http\Requests\CatValidation;
+class CatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class TagsController extends Controller
      */
     public function index()
     {
-        $tag=Tag::all();
+        $cats=Categorie::all();
         $etat=Etat::all();
-        return view ('admin/blog/tags', compact('tag', 'etat'));
+        return view('admin/blog/categories', compact('cats', 'etat'));
     }
 
     /**
@@ -25,13 +25,13 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(TagValidation $request)
+    public function create(CatValidation $request)
     {
-        $tag=new Tag;
-        $tag->tag =$request->tag;
-        $tag->etat_id=$request->etat;
-        $tag->save();
-        return redirect('blog/tags');
+        $cats=new Categorie;
+        $cats->categorie=$request->categorie;
+        $cats->etat_id=$request->etat;
+        $cats->save();
+        return redirect('blog/cat');
     }
 
     /**
@@ -42,9 +42,9 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $modif=Tag::find($id);
+        $modif=Categorie::find($id);
         $etat=Etat::all();
-        return view('admin/blog/edittags', compact('modif', 'etat'));
+        return view ('admin/blog/editcategories', compact('modif','etat'));
     }
 
     /**
@@ -54,13 +54,13 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagValidation $request, $id)
+    public function update(Request $request, $id)
     {
-        $modif=Tag::find($id);
-        $modif->tag=$request->tag;
+        $modif=Categorie::find($id);
+        $modif->categorie=$request->categorie;
         $modif->etat_id=$request->etat;
         $modif->save();
-        return redirect('blog/tags');
+        return redirect('blog/cat');
     }
 
     /**
@@ -71,8 +71,8 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $del=Tag::find($id);
+        $del=Categorie::find($id);
         $del->delete();
-        return redirect ('blog/tags');
+        return redirect ('blog/cat');
     }
 }

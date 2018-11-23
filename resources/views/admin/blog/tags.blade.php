@@ -24,7 +24,14 @@
             <label>Choisissez un tag</label>
             <input type="text" name="tag" value="{{old('tag')}}" class="form-control">
         </div>
-
+        <div class="form-group">
+            <label>Choisissez un etat</label>
+            <select name="etat" value="{{old('etat')}}">
+                @foreach ($etat as $item)
+                <option value="{{$item->id}}">{{$item->nom}}{{old($item->id)}}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
     </div>
 </form>
@@ -45,11 +52,13 @@
             <tr>
               <th style="width: 10px">{{$item->id}}</th>
               <th>{{$item->tag}}</th>
+              <th>{{$item->etat->nom}}</th>
+
               <th style="width: 40px">
                     <a href="/blog/tags/edit/{{$item->id}}" type="submit" class="btn btn-default">Edit</a>
                 </th>
               <th style="width: 40px">
-                    <form action="/blog/tags/delete/{{$item->id}}" method="POST" style="padding: 7px 10px; margin-top: 0;">
+                    <form action="/blog/tags/delete/{{$item->id}}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-default">Del</button>
                     </form>

@@ -50,7 +50,7 @@
                      
                             <!-- /.info-box-content -->
                             <a href="/blog/etats/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
-                            <form action="/blog/etats/delete/{{$item->id}}" method="POST" style="padding: 7px 10px; margin-top: 0;">
+                            <form action="/blog/etats/delete/{{$item->id}}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
                             </form>

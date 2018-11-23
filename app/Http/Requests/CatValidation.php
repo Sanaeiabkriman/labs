@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestimoValidation extends FormRequest
+class CatValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class TestimoValidation extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required|max:800',
-            'client'=> 'required'
+            'categorie'=> 'required|max:15',
+            'etat'=> 'required|max:100',
         ];
     }
 }

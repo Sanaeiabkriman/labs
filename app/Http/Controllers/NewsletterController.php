@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Newsletter;
 use Illuminate\Http\Request;
-use App\Contact;
-use App\Mail\MessageContact;
+use App\Mail\News;
 use Illuminate\Support\Facades\Mail;
-// use App\Coordonnee;
 use Validator;
 use Session;
-class ContactController extends Controller
+class NewsletterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-      //
+        //
     }
 
     /**
@@ -28,52 +27,24 @@ class ContactController extends Controller
      */
     public function create(Request $request)
     {
- 
         $validator = Validator::make($request->all(), [
-            'nom' => 'required|max:50',
-            'email'=>'required|email|max:60',
-            'sujet'=>'required|max:50',
-            'msg'=>'required',
+            'mail'=>'required|email|max:60',
             ]);
             
-        if ($validator->fails()) {
-            return redirect('/#contacts')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+            if ($validator->fails()) {
+                return redirect('/#newsletter')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
         
-        $contact= New Contact;
-        $contact->nom =$request->nom;
-        $contact->email =$request->email;
-        $contact->msg =$request->msg;
-        $contact->sujet =$request->sujet;
-        $contact->save();
-        $mailable = new MessageContact($contact);
+        $mail= new Newsletter;
+        $mail->mail =$request->mail;
+        $mail->save();
+        $mailable = new News($mail);
         Mail::to('iabkriman.sanae@gmail.com')->send($mailable);
-        return redirect('/#contacts')->with('success','Votre message a bien été envoyé!');
+        return redirect('/#newsletter')->with('success','Vous recevrez bientôt notre newsletter !');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

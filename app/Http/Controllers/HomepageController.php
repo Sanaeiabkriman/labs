@@ -10,6 +10,9 @@ use App\Coordonnee;
 use App\Service;
 use App\Icone;
 use App\User;
+use App\Testimonial;
+use App\Client;
+
 use Storage;
 
 class HomepageController extends Controller
@@ -24,12 +27,14 @@ class HomepageController extends Controller
         $intro=Homeintro::all();
         $about=Homeabout::all();
         $promo=Homepromo::all();
+        $testimo=Testimonial::all();
+        $client=Client::all();
         $coord=Coordonnee::all();
         $users=User::inRandomOrder()->take(2)->get();
         $center=User::first();
         $icone=Icone::all();
         $serv=Service::paginate(9);
-        return view (('welcome'), compact('intro', 'about', 'promo', 'coord', 'users', 'center','icone','serv'));
+        return view (('welcome'), compact('intro', 'about', 'promo', 'coord', 'users', 'center','icone','serv','testimo','client'));
 
 
     }

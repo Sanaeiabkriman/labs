@@ -59,7 +59,7 @@ class HomeintroController extends Controller
     public function edit($id)
     {
         $modif=Homeintro::find($id);
-        return view ('admin/editclient', compact('modif'));
+        return view ('admin/edithomeintro', compact('modif'));
     }
 
     /**

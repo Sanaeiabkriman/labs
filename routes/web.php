@@ -92,6 +92,18 @@ Route::post('/blog/tags/create', 'TagsController@create');
 Route::get('/blog/tags/edit/{id}', 'TagsController@edit');
 Route::post('/blog/tags/delete/{id}', 'TagsController@destroy');
 Route::post('/blog/tags/update/{id}', 'TagsController@update');
+// Page categories
+Route::get('/blog/cat','CatController@index');
+Route::post('/blog/cat/create', 'CatController@create');
+Route::get('/blog/cat/edit/{id}', 'CatController@edit');
+Route::post('/blog/cat/delete/{id}', 'CatController@destroy');
+Route::post('/blog/cat/update/{id}', 'CatController@update');
+// Page articles
+Route::get('/blog/article','ArticleController@index');
+Route::post('/blog/article/create', 'ArticleController@create');
+Route::get('/blog/article/edit/{id}', 'ArticleController@edit');
+Route::post('/blog/article/delete/{id}', 'ArticleController@destroy');
+Route::post('/blog/article/update/{id}', 'ArticleController@update');
 // Mailable
 Route::get('/contact', 'CoordController@index');
 // Page Contact
@@ -101,6 +113,8 @@ Route::post('/contact/coordonnee/create', 'CoordonneeController@create');
 Route::get('/contact/coordonnee/edit/{id}', 'CoordonneeController@edit');
 Route::post('/contact/coordonnee/delete/{id}', 'CoordonneeController@destroy');
 Route::post('/contact/coordonnee/update/{id}', 'CoordonneeController@update');
+// Page Newsletter
+Route::post('/newsletter', 'NewsletterController@create');
 
 
 
