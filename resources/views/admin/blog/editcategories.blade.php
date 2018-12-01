@@ -24,15 +24,17 @@
             <label>Modifiez la catégorie</label>
             <input type="text" name="categorie" value="{{old('categorie', $modif->categorie)}}" class="form-control">
         </div>
+        @can('isadmin')
+
         <div class="form-group">
-            <label>Choisissez la categorie</label>
+            <label>Choisissez l'etat'</label>
             <select name="etat" value="{{old('etat')}}">
                 @foreach ($etat as $item)
                 <option value="{{$item->id}}">{{$item->nom}}{{old($item->id)}}</option>
                 @endforeach
             </select>
         </div>
-
+@endcan
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
     </div>
 </form>

@@ -1,10 +1,10 @@
 <!-- Page Preloder -->
-<div id="preloder">
+{{-- <div id="preloder">
     <div class="loader">
         <img src="/storage/images/thumbnails/logo.png" alt="">
         <h2>Loading.....</h2>
     </div>
-</div>
+</div> --}}
 
 
 <!-- Header section -->
@@ -17,10 +17,9 @@
     <nav>
         <ul class="menu-list">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="services ">Services</a></li>
-            <li><a href="blog ">Blog</a></li>
-            <li><a href="contact ">Contact</a></li>
-            <li><a href="elements ">Elements</a></li>
+            <li class="active"><a href="/services ">Services</a></li>
+            <li><a href="/blog ">Blog</a></li>
+            <li><a href="/contact ">Contact</a></li>
         </ul>
     </nav>
 </header>

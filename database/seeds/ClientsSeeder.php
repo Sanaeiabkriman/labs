@@ -17,13 +17,13 @@ class ClientsSeeder extends Seeder
             'photo'=>"1.jpg",
         ]);
         DB::table('clients')->insert([
-            'nom' => "Michael Smith",
-            'fonction' => "CEO compagny",
+            'nom' => "Laura Smith",
+            'fonction' => "Manager",
             'photo'=>"2.jpg",
         ]);
         DB::table('clients')->insert([
-            'nom' => "Michael Smith",
-            'fonction' => "CEO compagny",
+            'nom' => "Giorgionito",
+            'fonction' => "Nimp",
             'photo'=>"3.jpg",
         ]);
     }

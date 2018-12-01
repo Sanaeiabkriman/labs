@@ -25,8 +25,8 @@ class HomeintroValidation extends FormRequest
     {
         return [
             'texte' => 'required|max:50',
-            'bg1'=> 'required',
-            'bg2'=> 'required',
+            'bg1'=> 'required|mimes:jpeg,bmp,png',
+            'bg2'=> 'required|mimes:jpeg,bmp,png',
         ];
     }
 }

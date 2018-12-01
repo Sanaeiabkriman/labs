@@ -13,27 +13,29 @@ class TagSeeder extends Seeder
     {
         DB::table('tags')->insert([
             'tag'=> 'Nature',
-            'etat_id'=>'3',
+            'user_id'=>'1',
+            'etat_id'=>'1',
         ]);
         DB::table('tags')->insert([
             'tag'=> 'Mort',
-            'etat_id'=>'3',
+            'user_id'=>'1',
+            'etat_id'=>'1',
         ]);
         DB::table('tags')->insert([
             'tag'=> 'Blog',
-            'etat_id'=>'3',
+            'user_id'=>'1',
+            'etat_id'=>'1',
         ]);
         DB::table('tags')->insert([
             'tag'=> 'Influenceuses',
-            'etat_id'=>'3',
+            'user_id'=>'1',
+            'etat_id'=>'1',
         ]);
         DB::table('tags')->insert([
             'tag'=> 'Parfum',
-            'etat_id'=>'3',
+            'user_id'=>'1',
+            'etat_id'=>'1',
         ]);
-        DB::table('tags')->insert([
-            'tag'=> 'Louche',
-            'etat_id'=>'3',
-        ]);
+
     }
 }

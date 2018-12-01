@@ -26,7 +26,7 @@ class ClientValidation extends FormRequest
         return [
             'nom' => 'required|max:50',
             'fonction'=> 'required',
-            'photo'=> 'required',
+            'photo'=> 'required|mimes:jpeg,bmp,png',
         ];
     }
 }

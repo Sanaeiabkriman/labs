@@ -12,13 +12,11 @@ class EtatSeeder extends Seeder
     public function run()
     {
         DB::table('etats')->insert([
-            'nom'=> 'Validé',
-        ]);
-        DB::table('etats')->insert([
-            'nom'=> 'A valider',
-        ]);
-        DB::table('etats')->insert([
             'nom'=> 'Non validé',
         ]);
+        DB::table('etats')->insert([
+            'nom'=> 'Validé',
+        ]);
+
     }
 }

@@ -32,9 +32,9 @@ class NewsletterController extends Controller
             ]);
             
             if ($validator->fails()) {
-                return redirect('/#newsletter')
-                            ->withErrors($validator)
-                            ->withInput();
+                return redirect('/services/#newsletter')
+                            ->withErrors($validator);
+                            // ->withInput();
             }
         
         $mail= new Newsletter;
@@ -42,7 +42,7 @@ class NewsletterController extends Controller
         $mail->save();
         $mailable = new News($mail);
         Mail::to('iabkriman.sanae@gmail.com')->send($mailable);
-        return redirect('/#newsletter')->with('success','Vous recevrez bientôt notre newsletter !');
+        return redirect('/services/#newsletter')->with('bravo','Vous recevrez bientôt notre newsletter !');
     }
 
 

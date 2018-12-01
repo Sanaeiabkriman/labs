@@ -40,7 +40,7 @@ class UsersController extends Controller
         $users= new User;
         $users->name= $request->name;
         $users->email= $request->email;
-        $users->password= $request->password;
+        $users->password= bcrypt($request->password);
         $users->role_id=$request->role;
         $users->photo= $renom;
         $users->bio= $request->bio;

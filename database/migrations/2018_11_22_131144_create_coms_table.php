@@ -15,10 +15,10 @@ class CreateComsTable extends Migration
     {
         Schema::create('coms', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('nom');
+            $table->text('email');
             $table->text('texte');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger('etat_id');
+            $table->unsignedInteger('etat_id')->default('1');
             $table->foreign('etat_id')->references('id')->on('etats');
             $table->unsignedInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles');

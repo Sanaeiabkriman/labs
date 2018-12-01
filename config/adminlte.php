@@ -172,10 +172,7 @@ return [
                             'text' => 'Projets',
                             'url'  => '/projets',
                         ],
-                        [
-                            'text' => 'Newsletter',
-                            'url'  => '#',
-                        ],
+
 
                     ],
                 ],
@@ -192,8 +189,8 @@ return [
                             'url'  => '/blog/cat',
                         ],
                         [
-                            'text' => 'Instagram',
-                            'url'  => '#',
+                            'text' => 'Commentaires',
+                            'url'  => '/commentaires',
                         ],
                         [
                             'text' => 'Tags',
@@ -204,29 +201,17 @@ return [
                             'url'  => '/blog/etats',
                         ],
                         [
-                            'text' => 'Newsletter',
-                            'url'  => '#',
+                            'text' => 'Instapics',
+                            'url'  => '/insta',
                         ],
                     ],
                 ],
                 [
                     'text'    => 'Contact',
+                    'url'  => '/contact/coordonnee',
                     'icon'    => 'share',
-                    'submenu' => [
-                        [
-                            'text'    => 'Header',
-                            'url'     => '#',
-                        ],
-                        [
-                            'text' => 'Map',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text' => 'Contact',
-                            'url'  => '/contact/coordonnee',
-                        ],
-                    ],
-                ],
+               ],
+    
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

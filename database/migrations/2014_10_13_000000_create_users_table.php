@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('photo')->nullable();
             $table->rememberToken();
             $table->unsignedInteger('role_id')->nullable();
-            $table->foreign('role_id')->references('id')->on('roles')->nullable();;
+            $table->foreign('role_id')->references('id')->on('roles')->nullable()->onDelete('cascade');
             $table->timestamps();
         });
     }

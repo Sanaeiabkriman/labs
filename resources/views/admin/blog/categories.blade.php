@@ -24,15 +24,16 @@
             <label>Choisissez une catégorie</label>
             <input type="text" name="categorie" value="{{old('categorie')}}" class="form-control">
         </div>
+        @can('isadmin')
         <div class="form-group">
-            <label>Choisissez le role</label>
+            <label>Choisissez l'état</label>
             <select name="etat" value="{{old('etat')}}">
                 @foreach ($etat as $item)
                 <option value="{{$item->id}}">{{$item->nom}}{{old($item->id)}}</option>
                 @endforeach
             </select>
         </div>
-
+        @endcan
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
     </div>
 </form>
@@ -50,14 +51,15 @@
         <table class="table table-condensed">
             <tbody>
             @foreach ($cats as $item)
+            @can('ismine', $item)
             <tr>
               <th style="width: 10px">{{$item->id}}</th>
               <th>{{$item->categorie}}</th>
               <th>{{$item->etat->nom}}</th>
-
               <th style="width: 40px">
                     <a href="/blog/cat/edit/{{$item->id}}" type="submit" class="btn btn-default">Edit</a>
                 </th>
+                
               <th style="width: 40px">
                     <form action="/blog/cat/delete/{{$item->id}}" method="POST" >
                         @csrf
@@ -65,6 +67,7 @@
                     </form>
                 </th>
             </tr>
+            @endcan
             @endforeach
           </tbody>
         </table>

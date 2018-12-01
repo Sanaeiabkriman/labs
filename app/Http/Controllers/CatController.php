@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categorie;
 use App\Etat;
+use Auth;
+use App\User;
 use App\Http\Requests\CatValidation;
 class CatController extends Controller
 {
@@ -19,7 +21,7 @@ class CatController extends Controller
         $etat=Etat::all();
         return view('admin/blog/categories', compact('cats', 'etat'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -27,9 +29,16 @@ class CatController extends Controller
      */
     public function create(CatValidation $request)
     {
+        $user=Auth::user();
         $cats=new Categorie;
         $cats->categorie=$request->categorie;
-        $cats->etat_id=$request->etat;
+        if ($user->role_id==1){
+                $cats->etat_id=$request->etat;
+        }else{
+            $cats->etat_id=1;
+        }
+        $cats->user_id=$user->id;
+        // dd($cats);
         $cats->save();
         return redirect('blog/cat');
     }
@@ -54,11 +63,17 @@ class CatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CatValidation $request, $id)
     {
+        $user=Auth::user();
         $modif=Categorie::find($id);
         $modif->categorie=$request->categorie;
-        $modif->etat_id=$request->etat;
+        if ($user->role_id==1){
+            $modif->etat_id=$request->etat;
+    }else{
+        $modif->etat_id=1;
+    }        
+        $modif->user_id=$user->id;
         $modif->save();
         return redirect('blog/cat');
     }

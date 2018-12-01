@@ -1,5 +1,5 @@
 <!-- Contact section -->
-@if ($errors->any())
+@if ($errors->has('email') || $errors->has('sujet') || $errors->has('msg') || $errors->has('nom'))
 <div class="alert alert-danger">
     <button type="button" class="close" data-dismiss="alert">x</button>
     <ul>
@@ -16,7 +16,6 @@
     <strong>{{ $message }}</strong>
 </div>
 @endif
-
 <div class="contact-section spad fix" id="contacts">
     <div class="container">
         <div class="row">

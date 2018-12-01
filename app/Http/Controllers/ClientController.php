@@ -7,6 +7,7 @@ use App\Client;
 use App\Http\Requests\ClientValidation;
 use ImageIntervention;
 use Storage;
+use App\Testimonial;
 class ClientController extends Controller
 {
     /**
@@ -92,6 +93,8 @@ class ClientController extends Controller
     {
         $del=Client::find($id);
         Storage::delete($del->photo);
+        $testi=Testimonial::where('client_id', $id);
+        $testi->delete();
         $del->delete();
         return redirect ('homeclient');
     }

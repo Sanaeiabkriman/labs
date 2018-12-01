@@ -30,53 +30,43 @@
             <label>Choisissez une fonction</label>
             <input type="text" name="fonction" value="{{old('fonction')}}" class="form-control">
         </div>
-    
-            <div class="form-group">
-                <label>Choisissez une photo</label>
-                <input type="file" name="photo" class="form-control">
-            </div>
-    
-    
+
+        <div class="form-group">
+            <label>Choisissez une photo</label>
+            <input type="file" name="photo" class="form-control">
+        </div>
+
+
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
     </div>
 
 </form>
 <br>
 
-<div class="box box-solid">
-    <div class="box-body">
-        {{-- Titre de page --}}
-        <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-            Clients
-        </h4>
-        {{-- box de modif --}}
-        <div class="media">
-            <div class="media-body">
-                <div class="clearfix">
-
-                    @foreach ($client as $item)
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <p>{{$item->nom}}</p>
-                            <p>{{$item->fonction}}</p>                           
-                            <img style=" height:150px;width:auto;" src={{Storage::url("public/images/thumbnails/".$item->photo)}}
-                                alt="">
-
-                            <!-- /.info-box-content -->
-                            <a href="/homeclient/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
-                            <form action="/homeclient/delete/{{$item->id}}" method="POST" style="padding: 7px 10px; margin-top: 0;">
-                                @csrf
-                                <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
-                            </form>
-                        </div>
-                    </div>
-                    @endforeach
 
 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<table class="table table-condensed">
+    <tbody>
+        @foreach ($client as $item)
+        <tr>
+            <th style="width: 10px">{{$item->id}}</th>
+            <th><img style=" height:60px; width:60px;" src={{Storage::url("public/images/thumbnails/".$item->photo)}}
+                    alt="">
+            </th>
 
+            <th>{{$item->nom}}</th>
+            <th>{{$item->fonction}}</th>
+            <th style="width: 40px">
+                <a href="/homeclient/edit/{{$item->id}}" type="submit" class="btn btn-default">Edit</a>
+            </th>
+            <th style="width: 40px">
+                <form action="/homeclient/delete/{{$item->id}}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-default">Del</button>
+                </form>
+            </th>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @stop

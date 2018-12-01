@@ -25,7 +25,7 @@ class CatValidation extends FormRequest
     {
         return [
             'categorie'=> 'required|max:15',
-            'etat'=> 'required|max:100',
+            'etat'=> 'nullable',
         ];
     }
 }

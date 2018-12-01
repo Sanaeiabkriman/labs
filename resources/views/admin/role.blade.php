@@ -24,7 +24,7 @@
             <label>Nouveau role</label>
             <input type="text" name="role" value="{{old('role')}}" class="form-control">
         </div>
-    
+
         <button type="submit" class="btn btn-default btn-block btn-sm">Ajouter</button>
     </div>
 
@@ -37,30 +37,29 @@
         <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
             Roles
         </h4>
-        {{-- box de modif --}}
-        <div class="media">
-            <div class="media-body">
-                <div class="clearfix">
 
-                    @foreach ($roles as $item)
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <p>{{$item->role}}</p>
-                     
-                            <!-- /.info-box-content -->
-                            <a href="/role/edit/{{$item->id}}" type="submit" class="btn btn-block btn-default btn-xs">Editer</a>
-                            <form action="/role/delete/{{$item->id}}" method="POST" style="padding: 7px 10px; margin-top: 0;">
-                                @csrf
-                                <button type="submit" class="btn btn-block btn-default btn-xs">supprimer</button>
-                            </form>
-                        </div>
-                    </div>
-                    @endforeach
+        <table class="table table-condensed">
+            <tbody>
+                @foreach ($roles as $item)
+                <tr>
+                    <th style="width: 10px">{{$item->id}}</th>
+                    <th>{{$item->role}}</th>
 
+                    <th style="width: 40px">
+                        <a href="/role/edit/{{$item->id}}" type="submit" class="btn btn-default">Edit</a>
+                    </th>
+                
+                    <th style="width: 40px">
+                        <form action="/role/delete/{{$item->id}}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-default">Del</button>
+                        </form>
+                    </th>
 
-                </div>
-            </div>
-        </div>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 

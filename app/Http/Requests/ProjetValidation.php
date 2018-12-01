@@ -27,7 +27,7 @@ class ProjetValidation extends FormRequest
             'icone' => 'required|max:50',
             'titre'=> 'required|max:50',
             'texte'=> 'required|max:100',
-            'image'=>'required',
+            'image'=>'required|mimes:jpeg,bmp,png',
         ];
     }
 }

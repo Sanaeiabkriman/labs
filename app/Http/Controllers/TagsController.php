@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tag;
 use App\Etat;
+use Auth;
+use App\User;
 use App\Http\Requests\TagValidation;
 class TagsController extends Controller
 {
@@ -27,9 +29,15 @@ class TagsController extends Controller
      */
     public function create(TagValidation $request)
     {
+        $user=Auth::user();
         $tag=new Tag;
         $tag->tag =$request->tag;
-        $tag->etat_id=$request->etat;
+        if (Auth::user()->role_id==1){
+            $tag->etat_id=$request->etat;
+    }else{
+        $tag->etat_id=1;
+    }
+        $tag->user_id=$user->id;
         $tag->save();
         return redirect('blog/tags');
     }
@@ -56,9 +64,15 @@ class TagsController extends Controller
      */
     public function update(TagValidation $request, $id)
     {
+        $user=Auth::user();
         $modif=Tag::find($id);
         $modif->tag=$request->tag;
-        $modif->etat_id=$request->etat;
+        if ($user->role_id==1){
+            $modif->etat_id=$request->etat;
+    }else{
+        $modif->etat_id=1;
+    }        
+        $modif->user_id=$user->id;
         $modif->save();
         return redirect('blog/tags');
     }

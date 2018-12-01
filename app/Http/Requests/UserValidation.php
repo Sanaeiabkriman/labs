@@ -28,7 +28,7 @@ class UserValidation extends FormRequest
             'email'=> 'required|max:100',
             'password'=> 'required',
             'role'=> 'required',
-            'photo'=> 'required',
+            'photo'=> 'required|mimes:jpeg,bmp,png',
         ];
     }
 }

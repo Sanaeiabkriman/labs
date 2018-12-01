@@ -13,15 +13,18 @@ class CatSeeder extends Seeder
     {
         DB::table('categories')->insert([
             'categorie'=> 'Caca',
+            'user_id'=>'1',
             'etat_id'=>'1',
         ]);
         DB::table('categories')->insert([
             'categorie'=> 'Kefta',
+            'user_id'=>'1',
             'etat_id'=>'1',
 
         ]);
         DB::table('categories')->insert([
             'categorie'=> 'Salut',
+            'user_id'=>'1',
             'etat_id'=>'1',
         ]);
     }

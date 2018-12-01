@@ -9,6 +9,8 @@ use App\Categorie;
 use Auth;
 use ImageIntervention;
 use Storage;
+use App\Etat;
+use App\Http\Requests\ArticleValidation;
 class ArticleController extends Controller
 {
     /**
@@ -18,10 +20,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article=Article::all();
+        $article=Article::with('tag')->get();
         $tag=Tag::all();
         $cat=Categorie::all();
-        return view('admin/blog/articles', compact('article', 'tag','cat'));
+        $etat=Etat::all();
+        return view('admin/blog/articles', compact('article', 'tag','cat','etat'));
     }
 
     /**
@@ -29,7 +32,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(ArticleValidation $request)
     {
         $img=$request->file('image');
         $renom=time().$img->hashName();
@@ -37,9 +40,11 @@ class ArticleController extends Controller
         $resized=ImageIntervention::make($img)->resize(730,260);
         $resized->save();
         Storage::put('/public/images/thumbnails/'.$renom, $resized);
+
         $article=new Article;
         $article->titre=$request->titre;
         $article->texte=$request->texte;
+        $article->textepreview= str_limit($request->texte,200);
         $article->categorie_id =$request->categorie;
         $article->user_id=Auth::id();
         $article->image=$renom;
@@ -58,10 +63,13 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article,$id)
     {
         $modif=Article::find($id);
-        return view('admin/blog/editarticle', compact('modif'));
+        $tag=Tag::all();
+        $cat=Categorie::all();
+        $etat=Etat::all();
+        return view('admin/blog/editarticles', compact('modif','tag','cat','etat'));
     }
 
     /**
@@ -71,14 +79,34 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(ArticleValidation $request, $id)
+    {        
+  
         $modif=Article::find($id);
-        $modif->nom=$request->nom;
+        if ($request->image== null){   
+        }else{      
+            Storage::delete('public/images/original/'.$modif->image);
+            Storage::delete('public/images/thumbnails/'.$modif->image);
+            $img=$request->image;
+            $renom=time().$img->hashName();
+            $img->store('/public/images/original/');
+            $resized=ImageIntervention::make($img)->resize(730,260);
+            $resized->save();
+            Storage::put('/public/images/thumbnails/'.$renom, $resized);
+            $modif->image=$renom;
+        }
+        $modif->titre=$request->titre;
+        $modif->texte=$request->texte;
+        $modif->textepreview= str_limit($request->texte,200);
+        $modif->categorie_id =$request->categorie;
+        $modif->user_id=Auth::id();
+        $modif->image=$renom;
+        $modif->save();
+        $modif->tag()->sync($request->tag);
         $modif->save();
         return redirect('blog/article');
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -88,7 +116,27 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $del=Article::find($id);
+        $del->tag()->detach();
+        $del->categorie()->detach();
+        Storage::delete('/public/images/thumbnails/'.$del->image);
         $del->delete();
         return redirect ('blog/article');
+    }
+    
+    public function valider($id)
+    {
+        $val=Article::find($id);
+        $val->etat_id=2;
+        $val->save();
+        return redirect()->back();
+
+    }
+    public function invalider($id)
+    {
+        $val=Article::find($id);
+        $val->etat_id=1;
+        $val->save();
+        return redirect()->back();
+
     }
 }
