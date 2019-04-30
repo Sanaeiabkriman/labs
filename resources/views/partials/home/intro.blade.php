@@ -10,7 +10,9 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="/storage/images/thumbnails/logo.png" alt=""><!-- Logo -->
+				<a href="/">
+					<img src="/storage/images/thumbnails/logo.png" alt="">
+				</a>
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
@@ -32,7 +34,7 @@
 		<div class="hero-content">
 			<div class="hero-center">
 				<img src="/storage/images/thumbnails/big-logo.png" alt="">
-				<p>Get your freebie template now!{{$item->texte}}</p>
+				<p> {{$item->texte}}</p>
 			</div>
 		</div>
 		<!-- slider -->

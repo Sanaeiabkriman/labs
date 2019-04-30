@@ -24,7 +24,7 @@ class ServiceValidation extends FormRequest
     public function rules()
     {
         return [
-            'texte' => 'required|max:50',
+            'texte' => 'required|min:50',
             'titre'=>'required|max:100',
             'icone'=>'required',
         ];

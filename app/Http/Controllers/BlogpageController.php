@@ -26,7 +26,8 @@ class BlogpageController extends Controller
         $cat=Categorie::all();
         $commentaire=Com::where('etat_id', 2)->count();
         $insta=Image::inRandomOrder()->take(6)->get();
-        return view (('/blog'), compact('article', 'tag','cat','insta','commentaire'));
+        $count=1;
+        return view (('/blog'), compact('article', 'tag','cat','insta','commentaire','count'));
     }
 
 }

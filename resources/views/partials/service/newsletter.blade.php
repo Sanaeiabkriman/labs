@@ -1,3 +1,4 @@
+<!-- newsletter section -->
 @if ($errors->has('mail')) 
 <div class="alert alert-danger">
     <button type="button" class="close" data-dismiss="alert">x</button>
@@ -15,8 +16,7 @@
     <strong>{{ $message }}</strong>
 </div>
 @endif
-    <!-- newsletter section -->
-	<div class="newsletter-section spad" id="newsletter">
+<div class="newsletter-section spad" id="newsletter">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">

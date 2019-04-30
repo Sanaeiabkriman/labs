@@ -10,7 +10,9 @@
 <!-- Header section -->
 <header class="header-section">
     <div class="logo">
-        <img src="/storage/images/thumbnails/logo.png" alt=""><!-- Logo -->
+            <a href="/">
+                <img src="/storage/images/thumbnails/logo.png" alt="">
+            </a>
     </div>
     <!-- Navigation -->
     <div class="responsive"><i class="fa fa-bars"></i></div>
@@ -32,7 +34,7 @@
                 <div class="page-info">
                     <h2>Services</h2>
                     <div class="page-links">
-                        <a href="#">Home</a>
+                        <a href="/">Home</a>
                         <span>Services</span>
                     </div>
                 </div>

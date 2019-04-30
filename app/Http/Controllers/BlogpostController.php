@@ -27,6 +27,7 @@ class BlogpostController extends Controller
         $comarticle=$comvalide->where('aticle_id',2);
         $comnonvalide=Com::where('etat_id',1)->orderBy('id','asc')->get();
         $insta=Image::inRandomOrder()->take(6)->get();
-        return view (('/blog-post'), compact('article', 'tag','cat','insta','comvalide','comnonvalide','comarticle'));
+        $count=1;
+        return view (('/blog-post'), compact('article', 'tag','cat','insta','comvalide','comnonvalide','comarticle','count'));
     }
 }

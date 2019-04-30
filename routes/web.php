@@ -132,7 +132,7 @@ Route::group(['middleware' => 'can:isadmin'], function () {
     Route::post('/insta/update/{id}', 'ImagesController@update');
 });
 // Search
-Route::post('/search', 'SearchController@search');
+Route::get('/search', 'SearchController@search');
 Route::get('/tagsearch/{id}', 'SearchTagController@search');
 Route::get('/catsearch/{id}', 'SearchCatController@search');
 
@@ -140,24 +140,16 @@ Route::get('/catsearch/{id}', 'SearchCatController@search');
 Route::post('/newsletter', 'NewsletterController@create');
 // Page Blog
 Route::get('/blog', 'BlogpageController@index');
-
-// Route::get('/blog', function(){
-    //     return view ('/blog');
-    // });
-    // Route::get('/blog-post', function(){
-        //     return view ('/blog-post');
-        // });
-        Route::get('/elements', function(){
-            return view ('/elements');
-        });
-        Route::group(['middleware' => 'can:isguest'], function () {
-            // Commentires
-            Route::get('/commentaires','ComController@index');
-            Route::post('/commentaire/{id}','ComController@create');
-            Route::post('/commentaires/delete/{id}', 'ComController@destroy');
-            Route::post('/validercom/{id}', 'ComController@valider');
-            Route::post('/invalidercom/{id}', 'ComController@invalider');
-        });
-        Auth::routes();
+ 
+Route::get('/elements', function(){
+    return view ('/elements');
+});
+    // Commentires
+    Route::get('/commentaires','ComController@index');
+    Route::post('/commentaire/{id}','ComController@create');
+    Route::post('/commentaires/delete/{id}', 'ComController@destroy');
+    Route::post('/validercom/{id}', 'ComController@valider');
+    Route::post('/invalidercom/{id}', 'ComController@invalider');
+Auth::routes();
         
 Route::get('/home', 'HomeController@index')->name('home');

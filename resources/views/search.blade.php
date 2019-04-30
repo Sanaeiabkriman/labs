@@ -33,12 +33,11 @@
             <div class="row">
                 <div class="col-md-8 col-sm-7 blog-posts">
                     <!-- Post item -->
-                    @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                    </div>
-                    @endif
+                    <?php $countArt = count($art) ?>
+                   
+<h3 class="bg-light"> Nous avous trouvé {{$countArt}} @if($countArt > 1) resultats @else resultat @endif à votre recherche</h3>
+<br>
+
 
                     @foreach ($art as $item)
                     <div class="post-item">
@@ -52,7 +51,7 @@
                         <div class="post-content">
                             <h2 class="post-title">{{$item->titre}}</h2>
                             <div class="post-meta">
-                                <a href="">{{$item->categorie->categorie}}</a>
+                                <a href="/catsearch/{{$item->id}}">{{$item->categorie->categorie}}</a>
                                 <a href="">   
                                                                      
                                         @foreach ($item->tag as $tags)
@@ -61,9 +60,10 @@
                                         ,
                                         @endif
                                         @endforeach
-                                        {{-- {!!$count=1!!} --}}
+                                        <?php  $count = 1 ?>
                                     </a>
-                                    <a href="">{{count($item->com)}}  comments</a>
+                                    <?php $countItems = $item->getComCount() ?>
+                                    <a href="">{{$countItems}} @if($countItems > 1) comments @else comment @endif</a>
                             </div>
                             <p>{{$item->textepreview}}</p>
                             <a href="/blog-post/{{$item->id}}" class="read-more">Read More</a>
@@ -75,7 +75,7 @@
                 <div class="col-md-4 col-sm-5 sidebar">
                     <!-- Single widget -->
                     <div class="widget-item">
-                        <form action="/search" method="post" class="search-form">
+                        <form action="/search"class="search-form">
                             @csrf
                             <input type="text" name="search" placeholder="Search">
                             <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
@@ -87,7 +87,7 @@
                         <ul>
                             @foreach ($cat as $item)
                             @if($item->etat_id==2)
-                            <li><a href="#">{{$item->categorie}}</a></li>
+                            <li><a href="/catsearch/{{$item->id}}">{{$item->categorie}}</a></li>
                             @endif
                             @endforeach
 
@@ -136,6 +136,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- {{$art->links()}} --}}
             </div>
         </div>
     </div>

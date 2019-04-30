@@ -32,7 +32,12 @@
 <body>
     <!-- Page Preloder -->
   
-     --}}
+	{{-- <div id="preloder">
+            <div class="loader">
+                <img src="/storage/images/thumbnails/logo.png" alt="">
+                <h2>Loading.....</h2>
+            </div>
+        </div> --}}
 
 
     <!-- Header section -->
@@ -90,9 +95,15 @@
                                 <a href="">{{$article->categorie->categorie}}</a>
                                 <a href="">
                                     @foreach ($article->tag as $tags)
-                                    {{$tags->tag}},
+                                    {{$tags->tag}}
+                                    @if (count($article->tag) != $count++)
+                                        ,
+                                    @endif
                                     @endforeach</a>
-                                <a href="">{{count($comarticle)}} Comments</a>
+                                    <?php  $count = 1 ?>
+                                <a href="">{{$article->getComCount()}} @if($article->getComCount() > 1) comments @else comment @endif                               
+                                </a>  
+
                             </div>
                             <p>{{$article->texte}}</p>
                         </div>
@@ -108,7 +119,7 @@
                         </div>
                         <!-- Post Comments -->
                         <div class="comments">
-                            <h2>{{count($comarticle)}} Comments</h2>
+                            <h2>{{$article->getComCount()}} Comments</h2>
                             @foreach ($article->com as $item)
                             @if($item->etat_id==2)
                             <ul class="comment-list">
@@ -117,7 +128,7 @@
                                         <img src="/storage/images/thumbnails/avatar/01.jpg" alt="">
                                     </div>
                                     <div class="commetn-text">
-                                        <h3>{{$item->nom}}| {{$item->created_at->format('Dmy')}}</h3>
+                                        <h3>{{$item->nom}}| {{$item->created_at->format('d M Y')}}</h3>
                                         <p>{{$item->texte}} </p>
                                     </div>
                                 </li>

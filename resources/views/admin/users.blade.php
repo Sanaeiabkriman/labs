@@ -76,11 +76,12 @@
                 @foreach ($users as $item)
                 <tr>
                     <th style="width: 10px">{{$item->id}}</th>
-                    <th><img style=" height:60px; width:60px;" src={{Storage::url("public/images/thumbnails/".$item->photo)}}
+                    <th><img style=" " src={{Storage::url("public/images/thumbnails/".$item->photo)}}
                             alt="">
                     </th>
                     <th>{{$item->name}}</th>
-                    <th>{{$item->role->role}}</th>
+                
+                    <th>{{$item->role[0]}}</th>
                     <th>{{$item->email}}</th>
                     {{-- <th>{{$item->password}}</th> --}}
                     <th>{{$item->fonction}}</th>

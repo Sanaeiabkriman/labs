@@ -9,7 +9,7 @@
                 @if($item->etat_id==2)
                 <div class="post-item">
                     <div class="post-thumbnail">
-                        <img src={{Storage::url("public/images/thumbnails/".$item->image)}} alt="">
+                        <img src={{Storage::url("public/images/thumbnails/".$item->image)}}>
                         <div class="post-date">
                             <h2>{{$item->created_at->format('d')}}</h2>
                             <h3>{{$item->created_at->format('m Y')}}</h3>
@@ -21,21 +21,26 @@
                             <a href="">{{$item->categorie->categorie}}</a>
                             <a href="">
                                 @foreach ($item->tag as $tags)
-                                {{$tags->tag}},
-                                @endforeach
-                            </a>
-                    {{-- @foreach ($commentaire as $item) --}}
-                    <a href="">{{count($item->com)}}  Comments</a>
-                        
-                    {{-- @endforeach --}}
+                                {{$tags->tag}}
+                                @if (count($item->tag) != $count++)
+                                    ,
+                                @endif
+                                    @endforeach
+                                   <?php  $count = 1 ?>    
+                                </a>
+                           
+                                <?php $countItems = $item->getComCount() ?>
+                                <a href="">{{$countItems}} @if($countItems > 1) comments @else comment @endif</a>
+                       
+                            </div>
+                            <p>{{$item->textepreview}}</p>
+                            <a href="/blog-post/{{$item->id}}" class="read-more">Read More</a>
                         </div>
-                        <p>{{$item->textepreview}}</p>
-                        <a href="/blog-post/{{$item->id}}" class="read-more">Read More</a>
                     </div>
-                </div>
-                @endif
-                @endforeach
-
+                    @endif
+                    @endforeach
+                   
+                
                 <!-- Pagination -->
                 {{$article->links()}}
 
@@ -44,7 +49,7 @@
             <div class="col-md-4 col-sm-5 sidebar">
                 <!-- Single widget -->
                 <div class="widget-item">
-                    <form action="/search" method="post" class="search-form">
+                    <form action="/search"  class="search-form">
                         @csrf
                         <input type="text" name="search" placeholder="Search">
                         <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>

@@ -26,8 +26,8 @@ class SearchTagController extends Controller
         $comval=Com::where('article_id',$id)->count();
         $taggle = Tag::find($id);
         $articletag= $taggle->article()->get();
-       
-        return view ('tagsearch',compact('taggle','cat','article','insta','articletag','tags','commentaire','comval'));
+        $count=1;
+        return view ('tagsearch',compact('cat','article','insta','tags','commentaire','comval','taggle','articletag','count'));
     }
 
     /**

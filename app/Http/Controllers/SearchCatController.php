@@ -25,8 +25,9 @@ class SearchCatController extends Controller
         $tag = Tag::all();
         // $com=Com::find($id);
         // $commentaire=Com::where('etat_id', '2')->count();
+        $count=1;
         $articlecat=Article::where('categorie_id',$id)->get();
-        return view ('catsearch',compact('tag','cate','article','insta','articlecat','commentaire','com'));
+        return view ('catsearch',compact('tag','cate','article','insta','articlecat','count'));
     }
 
 }
